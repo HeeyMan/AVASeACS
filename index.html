@@ -63,9 +63,20 @@
         .share-button {
             background-color: #25d366; /* Verde do WhatsApp */
         }
+        .icon {
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        audio {
+            display: none;
+        }
     </style>
 </head>
 <body>
+    <audio autoplay>
+        <source src="musiquinha.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
     <div class="header">#NomeiaACS/AVAS</div>
     <div class="container">
         <div class="dialog-box">
@@ -74,8 +85,14 @@
         <div id="countdown">Calculando...</div>
     </div>
     <div class="share-copy-buttons">
-        <button class="share-button" onclick="compartilhar()">Compartilhar no WhatsApp</button>
-        <button class="copy-button" onclick="copiarTempo()">Copiar Tempo</button>
+        <button class="share-button" onclick="compartilhar()">
+            <span class="icon">&#128222;</span> <!-- Ícone do WhatsApp -->
+            Compartilhar Tempo no WhatsApp
+        </button>
+        <button class="copy-button" onclick="copiarTempo()">
+            <span class="icon">&#128203;</span> <!-- Ícone de copiar/colar -->
+            Copiar Tempo
+        </button>
     </div>
     <div id="tempoCopiado"></div>
     <div class="highlight-box">#SomosTodosDonoDaVerdade</div>
@@ -130,8 +147,4 @@
             document.body.appendChild(input);
             input.select();
             document.execCommand('copy');
-            document.body.removeChild(input);
-        }
-    </script>
-</body>
-</html>
+            document.body.removeChild
