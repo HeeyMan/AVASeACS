@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador Regressivo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            background-image: url('https://www.ubatuba.sp.gov.br/wp-content/uploads/sites/2/2021/03/destaque-dengue-770x416.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .top-box {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin: auto;
+            margin-bottom: 2em;
+            text-align: center;
+        }
+
+        .frase-seguranamãodedeus {
+            font-size: 25px;
+            color: #ff0; /* Amarelo */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .titulo {
+            font-size: 72px;
+            font-weight: bold;
+            font-family: 'Roboto Slab', serif; /* Mudança de fonte para Roboto Slab */
+            color: #00f;
+            text-shadow: 5px 3px 9px rgba(0,0,0,0.5);
+            margin-bottom: 1em;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-shadow: 5px 3px 9px rgba(0,0,0,0.5);
+            margin-bottom: 2em;
+        }
+
+        .caixa {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin: auto;
+            margin-bottom: 20em;
+            position: relative;
+        }
+
+        .contador {
+    font-size: 48px;
+    letter-spacing: 8px;
+    font-family: 'Courier New', sans-serif; /* Nova fonte (Courier New) */
+    color: #f00; /* Vermelho */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+        .frase {
+            font-size: 25px;
+            margin-top: 1em;
+            color: #ff0; /* Amarelo */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            color: #fff;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-box">
+        <div class="frase-seguranamãodedeus">#SEGURANAMÃODEDEUS</div>
+    </div>
+
+    <div class="caixa">
+        <h1>O tempo que falta para o resultado de ACS/AVAS é de:</h1>
+        <div id="contador" class="contador"></div>
+        <div class="frase">Não vejo a hora de matar mosquito da dengue!! >:)</div>
+    </div>
+    <div class="footer">#SomosTodosDonoDaVerdade</div>
+
+    <script>
+        // Define a data do evento
+        const dataEvento = new Date('2023-10-20T23:00:00');
+
+        function atualizarContador() {
+            const agora = new Date();
+            const diferenca = dataEvento - agora;
+
+            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+            const contadorElemento = document.getElementById('contador');
+            contadorElemento.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+
+            if (diferenca <= 0) {
+                contadorElemento.innerHTML = 'Evento ocorreu!';
+                clearInterval(contadorInterval);
+            }
+        }
+
+        atualizarContador();
+        const contadorInterval = setInterval(atualizarContador, 1000);
+    </script>
+</body>
+</html>
