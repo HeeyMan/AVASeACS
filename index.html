@@ -126,7 +126,7 @@
 
         function compartilhar() {
             const tempoFaltando = document.getElementById("countdown").innerText;
-            const mensagem = `Faltam apenas ${tempoFaltando} para sair o resultado!`;
+            const mensagem = `Faltam apenas ${tempoFaltando} para sair o resultado! - Contagem regressiva by: https://heeyman.github.io/Arboviroses/`;
 
             // Criando um elemento de link com WhatsApp
             const link = document.createElement('a');
@@ -138,13 +138,17 @@
         function copiarTempo() {
             const tempoFaltando = document.getElementById("countdown").innerText;
             const tempoCopiadoElement = document.getElementById("tempoCopiado");
-            tempoCopiadoElement.innerHTML = `Tempo copiado: ${tempoFaltando}`;
+            tempoCopiadoElement.innerHTML = `Tempo copiado: ${tempoFaltando} `;
 
             // Copiando o tempo para a área de transferência
             const input = document.createElement('input');
             input.style.opacity = '0';
-            input.value = `Faltam apenas ${tempoFaltando} para sair o resultado!`;
+            input.value = `Faltam apenas ${tempoFaltando} para sair o resultado! - Contagem regressiva by: https://heeyman.github.io/Arboviroses/`;
             document.body.appendChild(input);
             input.select();
             document.execCommand('copy');
-            document.body.removeChild
+            document.body.removeChild(input);
+        }
+    </script>
+</body>
+</html>
