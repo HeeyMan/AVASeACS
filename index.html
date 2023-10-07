@@ -1,136 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contador Regressivo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <title>Contagem Regressiva</title>
     <style>
         body {
+            background-color: #1f1f1f;
+            color: #ffffff;
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0;
-            background-image: url('https://www.ubatuba.sp.gov.br/wp-content/uploads/sites/2/2021/03/destaque-dengue-770x416.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
+            margin-top: 50px; /* Ajuste para espaço entre o topo da página e o texto */
         }
-
-        .container {
-            max-width: 1000px; /* Define a largura máxima do conteúdo */
-            width: 100%; /* Faz o conteúdo ocupar toda a largura disponível */
-            padding: 0 20px; /* Adiciona um pequeno espaço nas laterais para melhorar a legibilidade */
-            box-sizing: border-box; /* Garante que a largura inclui padding */
-        }
-
-        .top-box {
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 2em;
-        }
-
-        .frase-seguranamãodedeus {
-            font-size: 25px;
-            color: #ff0; /* Amarelo */
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .titulo {
-            font-size: 48px;
-            font-weight: bold;
-            font-family: 'Roboto Slab', serif;
-            color: #00f;
-            text-shadow: 5px 3px 9px rgba(0,0,0,0.5);
-            margin-bottom: 1em;
-        }
-
-        h1 {
+        .header {
             font-size: 24px;
-            text-shadow: 5px 3px 9px rgba(0,0,0,0.5);
-            margin-bottom: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
-
-        .caixa {
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
+        .container {
+            margin: 0 auto;
+            max-width: 600px;
+            background-color: #333333;
             padding: 20px;
-            text-align: center;
-            margin-bottom: 2em;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
-
-        .contador {
-            font-size: 36px;
-            letter-spacing: 4px;
-            font-family: 'Courier New', sans-serif;
-            color: #f00;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .frase {
-            font-size: 20px;
-            margin-top: 1em;
-            color: #ff0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .footer {
-            background-color: rgba(0, 0, 0, 0.8);
+        .dialog-box {
+            background-color: #444444;
             padding: 10px;
-            color: #fff;
-            font-size: 18px;
-            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        #countdown {
+            color: #ff0000;
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .highlight-box {
+            background-color: #555555;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .footer {
+            position: fixed;
+            bottom: 10px;
             width: 100%;
+            text-align: center;
+            font-size: 14px;
+        }
+        .share-button, .copy-button {
+            background-color: #4285f4;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin:  20px;
+        }
+        .share-button {
+            background-color: #25d366; /* Verde do WhatsApp */
         }
     </style>
 </head>
 <body>
+    <div class="header">#NomeiaACS/AVAS</div>
     <div class="container">
-        <div class="top-box">
-            <div class="frase-seguranamãodedeus">#SEGURANAMÃODEDEUS</div>
+        <div class="dialog-box">
+            <p>O tempo que falta para a mamãe Funatec soltar o resultado é de:</p>
         </div>
-
-        <div class="caixa">
-            <h1>O tempo que falta para o resultado de ACS/AVAS é de:</h1>
-            <div id="contador" class="contador"></div>
-            <div class="frase">Não vejo a hora de matar mosquito da dengue!! >:)</div>
-        </div>
+        <div id="countdown">Calculando...</div>
     </div>
-    <div class="footer">#SomosTodosDonoDaVerdade</div>
+    <div class="share-copy-buttons">
+        <button class="share-button" onclick="compartilhar()">Compartilhar no WhatsApp</button>
+        <button class="copy-button" onclick="copiarTempo()">Copiar Tempo</button>
+    </div>
+    <div id="tempoCopiado"></div>
+    <div class="highlight-box">#SomosTodosDonoDaVerdade</div>
+    <div class="footer">#NomeiaACS/AVAS</div>
 
     <script>
-        const dataEvento = new Date('2023-10-20T23:00:00');
+        function countdown(endDate) {
+            let now = new Date();
+            let end = new Date(endDate);
+            let timeDiff = end - now;
+            let seconds = Math.floor(timeDiff / 1000);
+            let minutes = Math.floor(seconds / 60);
+            let hours = Math.floor(minutes / 60);
+            let days = Math.floor(hours / 24);
 
-        function atualizarContador() {
-            const agora = new Date();
-            const diferenca = dataEvento - agora;
+            hours %= 24;
+            minutes %= 60;
+            seconds %= 60;
 
-            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-            const contadorElemento = document.getElementById('contador');
-            contadorElemento.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-
-            if (diferenca <= 0) {
-                contadorElemento.innerHTML = 'Evento ocorreu!';
-                clearInterval(contadorInterval);
+            if (timeDiff <= 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "Tempo esgotado!";
             }
         }
 
-        atualizarContador();
-        const contadorInterval = setInterval(atualizarContador, 1000);
+        const endDate = new Date("2023-10-20T23:00:00-03:00");
+        const timer = setInterval(() => countdown(endDate), 1000);
+        countdown(endDate);
+
+        function compartilhar() {
+            const tempoFaltando = document.getElementById("countdown").innerText;
+            const mensagem = `Faltam apenas ${tempoFaltando} para sair o resultado!`;
+
+            // Criando um elemento de link com WhatsApp
+            const link = document.createElement('a');
+            link.href = `whatsapp://send?text=${encodeURIComponent(mensagem)}`;
+            link.target = '_blank';
+            link.click();
+        }
+
+        function copiarTempo() {
+            const tempoFaltando = document.getElementById("countdown").innerText;
+            const tempoCopiadoElement = document.getElementById("tempoCopiado");
+            tempoCopiadoElement.innerHTML = `Tempo copiado: ${tempoFaltando}`;
+
+            // Copiando o tempo para a área de transferência
+            const input = document.createElement('input');
+            input.style.opacity = '0';
+            input.value = `Faltam apenas ${tempoFaltando} para sair o resultado!`;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+        }
     </script>
 </body>
 </html>
