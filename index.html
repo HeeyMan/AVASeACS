@@ -229,7 +229,9 @@
 
         function compartilhar() {
             const tempoFaltando = document.getElementById("countdown").innerText;
-            const mensagem = `Faltam apenas ${tempoFaltando} para sair o resultado! - Compartilhe a ânsiedade com outras pessoas 😁 https://heeyman.github.io/AVASeACS/`;
+            const mensagem = `Faltam apenas ${tempoFaltando} para sair o resultado!📝 
+            Compartilhe quando tempo falta você também 😁
+            https://heeyman.github.io/AVASeACS/`;
 
             const link = document.createElement('a');
             link.href = `whatsapp://send?text=${encodeURIComponent(mensagem)}`;
@@ -244,7 +246,9 @@
 
             const input = document.createElement('input');
             input.style.opacity = '0';
-            input.value = `Faltam apenas ${tempoFaltando} para sair o resultado! - Compartilhe a ânsiedade com outras pessoas 😁 https://heeyman.github.io/AVASeACS/`;
+            input.value = `Faltam apenas ${tempoFaltando} para sair o resultado!📝 
+            Compartilhe quando tempo falta você também 😁
+            https://heeyman.github.io/AVASeACS/`;
             document.body.appendChild(input);
             input.select();
             document.execCommand('copy');
