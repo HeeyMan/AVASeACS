@@ -41,7 +41,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             margin: 0 auto;
-            max-width: 600px; /* Nova adição para limitar a largura máxima */
+            max-width: 600px;
         }
 
         .dialog-box {
@@ -85,28 +85,68 @@
             font-size: 18px;
         }
 
-        /* Estilos adicionados para tornar a página responsiva */
+        .share-copy-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-        @media screen and (max-width: 600px) {
-            .header {
-                font-size: 20px;
-            }
+        .share-button, .copy-button {
+            background-color: #4285f4;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
 
-            #countdown {
-                font-size: 28px;
-            }
+        .share-button {
+            background-color: #25d366;
+        }
 
-            .highlight-box {
-                font-size: 16px;
-            }
+        .icon {
+            margin-right: 8px;
+            vertical-align: middle;
+        }
 
-            .nota-corte h3 {
-                font-size: 20px;
-            }
+        audio {
+            display: none;
+        }
 
-            .nota-corte p {
-                font-size: 16px;
-            }
+        .audio-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .audio-button {
+            background-color: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            margin: 0 10px;
+            color: #ff5722;
+        }
+
+        .start-button {
+            background-color: #ff5722;
+            border: none;
+            color: #ffffff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            font-size: 14px;
+            margin-top: 30px;
         }
     </style>
 </head>
