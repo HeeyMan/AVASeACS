@@ -25,16 +25,19 @@
             height: 100vh;
         }
 
+        .container {
+            max-width: 1000px; /* Define a largura máxima do conteúdo */
+            width: 100%; /* Faz o conteúdo ocupar toda a largura disponível */
+            padding: 0 20px; /* Adiciona um pequeno espaço nas laterais para melhorar a legibilidade */
+            box-sizing: border-box; /* Garante que a largura inclui padding */
+        }
+
         .top-box {
             background-color: rgba(0, 0, 0, 0.8);
             border-radius: 15px;
             padding: 20px;
-            max-width: 90%; /* Nova regra */
-            width: 400px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            margin: auto;
-            margin-bottom: 2em;
             text-align: center;
+            margin-bottom: 2em;
         }
 
         .frase-seguranamãodedeus {
@@ -44,9 +47,9 @@
         }
 
         .titulo {
-            font-size: 72px;
+            font-size: 48px;
             font-weight: bold;
-            font-family: 'Roboto Slab', serif; /* Mudança de fonte para Roboto Slab */
+            font-family: 'Roboto Slab', serif;
             color: #00f;
             text-shadow: 5px 3px 9px rgba(0,0,0,0.5);
             margin-bottom: 1em;
@@ -62,64 +65,50 @@
             background-color: rgba(0, 0, 0, 0.8);
             border-radius: 15px;
             padding: 20px;
-            max-width: 90%; /* Nova regra */
-            width: 400px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            margin: auto;
-            margin-bottom: 20em;
-            position: relative;
+            text-align: center;
+            margin-bottom: 2em;
         }
 
         .contador {
-            font-size: 48px;
-            letter-spacing: 8px;
-            font-family: 'Courier New', sans-serif; /* Nova fonte (Courier New) */
-            color: #f00; /* Vermelho */
+            font-size: 36px;
+            letter-spacing: 4px;
+            font-family: 'Courier New', sans-serif;
+            color: #f00;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .frase {
-            font-size: 25px;
+            font-size: 20px;
             margin-top: 1em;
-            color: #ff0; /* Amarelo */
+            color: #ff0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
             background-color: rgba(0, 0, 0, 0.8);
             padding: 10px;
             color: #fff;
             font-size: 18px;
             text-align: center;
-        }
-
-        @media (max-width: 600px) {
-            /* Adiciona estilos específicos para telas menores que 600px de largura */
-            .top-box, .caixa {
-                max-width: 100%;
-                width: 90%;
-            }
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="top-box">
-        <div class="frase-seguranamãodedeus">#SEGURANAMÃODEDEUS</div>
-    </div>
+    <div class="container">
+        <div class="top-box">
+            <div class="frase-seguranamãodedeus">#SEGURANAMÃODEDEUS</div>
+        </div>
 
-    <div class="caixa">
-        <h1>O tempo que falta para o resultado de ACS/AVAS é de:</h1>
-        <div id="contador" class="contador"></div>
-        <div class="frase">Não vejo a hora de matar mosquito da dengue!! >:)</div>
+        <div class="caixa">
+            <h1>O tempo que falta para o resultado de ACS/AVAS é de:</h1>
+            <div id="contador" class="contador"></div>
+            <div class="frase">Não vejo a hora de matar mosquito da dengue!! >:)</div>
+        </div>
     </div>
     <div class="footer">#SomosTodosDonoDaVerdade</div>
 
     <script>
-        // Define a data do evento
         const dataEvento = new Date('2023-10-20T23:00:00');
 
         function atualizarContador() {
