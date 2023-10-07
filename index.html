@@ -90,6 +90,18 @@
             margin: 0 10px;
             color: #ff5722;
         }
+        .start-button {
+            background-color: #ff5722;
+            border: none;
+            color: #ffffff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -117,96 +129,99 @@
     <div id="tempoCopiado"></div>
     <div class="highlight-box">#SomosTodosDonoDaVerdade</div>
     <div class="audio-controls">
-        <button class="audio-button" onclick="toggleAudio()">
-            <span class="icon">&#9654;</span>
+        <button class="audio-button" onclick="changeVolume('down')">
+            <span class="icon">&#128265;</span>
+        </button>
+        <button class="start-button" onclick="toggleAudio()">
+            &#9654;
         </button>
         <button class="audio-button" onclick="changeVolume('up')">
             <span class="icon">&#128266;</span>
         </button>
-        <button class="audio-button" onclick="changeVolume('down')">
-            <span class="icon">&#128265;</span>
-        </button>
     </div>
-    <div class="footer">#NomeiaACS/AVAS - Contagem regressiva
-        <script>
-            let audio = document.getElementById('audio');
-
-            function countdown(endDate) {
-                let now = new Date();
-                let end = new Date(endDate);
-                let timeDiff = end - now;
-                let seconds = Math.floor(timeDiff / 1000);
-                let minutes = Math.floor(seconds / 60);
-                let hours = Math.floor(minutes / 60);
-                let days = Math.floor(hours / 24);
-
-                hours %= 24;
-                minutes %= 60;
-                seconds %= 60;
-
-                document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-                if (timeDiff <= 0) {
-                    clearInterval(timer);
-                    document.getElementById("countdown").innerHTML = "Tempo esgotado!";
-                }
-            }
-
-            const endDate = new Date("2023-10-20T23:00:00-03:00");
-            const timer = setInterval(() => countdown(endDate), 1000);
-            countdown(endDate);
-
-            function compartilhar() {
-                const tempoFaltando = document.getElementById("countdown").innerText;
-                const mensagem = `Faltam apenas ${tempoFaltando} para sair o resultado! - Contagem regressiva by: https://heeyman.github.io/Arboviroses/`;
-
-                const link = document.createElement('a');
-                link.href = `whatsapp://send?text=${encodeURIComponent(mensagem)}`;
-                link.target = '_blank';
-                link.click();
-            }
-
-            function copiarTempo() {
-                const tempoFaltando = document.getElementById("countdown").innerText;
-                const tempoCopiadoElement = document.getElementById("tempoCopiado");
-                tempoCopiadoElement.innerHTML = `Tempo copiado: ${tempoFaltando} - Contagem regressiva by: https://heeyman.github.io/Arboviroses/`;
-
-                const input = document.createElement('input');
-                input.style.opacity = '0';
-                input.value = `Faltam apenas ${tempoFaltando} para sair o resultado! - Contagem regressiva by: https://heeyman.github.io/Arboviroses/`;
-                document.body.appendChild(input);
-                input.select();
-                document.execCommand('copy');
-                document.body.removeChild(input);
-
-                const mensagemCopiado = document.createElement('div');
-                mensagemCopiado.textContent = 'Tempo copiado!';
-                mensagemCopiado.style.color = '#ffffff';
-                mensagemCopiado.style.fontSize = '16px';
-                mensagemCopiado.style.marginTop = '10px';
-                document.getElementById('tempoCopiado').appendChild(mensagemCopiado);
-
-                setTimeout(() => {
-                    mensagemCopiado.remove();
-                }, 5000);
-            }
-
-            function toggleAudio() {
-                if (audio.paused) {
-                    audio.play();
-                } else {
-                    audio.pause();
-                }
-            }
-
-            function changeVolume(direction) {
-                if (direction === 'up' && audio.volume < 1) {
-                    audio.volume += 0.1;
-                } else if (direction === 'down' && audio.volume > 0) {
-                    audio.volume -= 0.1;
-                }
-            }
-        </script>
+    <div class="footer">
+        #NomeiaACS/AVAS - Contagem regressiva
     </div>
+    <p style="font-size: 20px; color: #ff5722; margin-top: 20px;">Aperte o botão laranja</p>
+    <script>
+        let audio = document.getElementById('audio');
+        audio.autoplay = true;
+
+        function countdown(endDate) {
+            let now = new Date();
+            let end = new Date(endDate);
+            let timeDiff = end - now;
+            let seconds = Math.floor(timeDiff / 1000);
+            let minutes = Math.floor(seconds / 60);
+            let hours = Math.floor(minutes / 60);
+            let days = Math.floor(hours / 24);
+
+            hours %= 24;
+            minutes %= 60;
+            seconds %= 60;
+
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (timeDiff <= 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "Tempo esgotado!";
+            }
+        }
+
+        const endDate = new Date("2023-10-20T23:00:00-03:00");
+        const timer = setInterval(() => countdown(endDate), 1000);
+        countdown(endDate);
+
+        function compartilhar() {
+            const tempoFaltando = document.getElementById("countdown").innerText;
+            const mensagem = `Faltam apenas ${tempoFaltando} para sair o resultado! - Contagem regressiva by: https://heeyman.github.io/Arboviroses/`;
+
+            const link = document.createElement('a');
+            link.href = `whatsapp://send?text=${encodeURIComponent(mensagem)}`;
+            link.target = '_blank';
+            link.click();
+        }
+
+        function copiarTempo() {
+            const tempoFaltando = document.getElementById("countdown").innerText;
+            const tempoCopiadoElement = document.getElementById("tempoCopiado");
+            tempoCopiadoElement.innerHTML = `Tempo copiado: ${tempoFaltando} - Contagem regressiva by: https://heeyman.github.io/Arboviroses/`;
+
+            const input = document.createElement('input');
+            input.style.opacity = '0';
+            input.value = `Faltam apenas ${tempoFaltando} para sair o resultado! - Contagem regressiva by: https://heeyman.github.io/Arboviroses/`;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+
+            const mensagemCopiado = document.createElement('div');
+            mensagemCopiado.textContent = 'Tempo copiado!';
+            mensagemCopiado.style.color = '#ffffff';
+            mensagemCopiado.style.fontSize = '16px';
+            mensagemCopiado.style.marginTop = '10px';
+            document.getElementById('tempoCopiado').appendChild(mensagemCopiado);
+
+            setTimeout(() => {
+                mensagemCopiado.remove();
+            }, 5000);
+        }
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+
+        function changeVolume(direction) {
+            if (direction === 'up' && audio.volume < 1) {
+                audio.volume += 0.1;
+            } else if (direction === 'down' && audio.volume > 0) {
+                audio.volume -= 0.1;
+            }
+        }
+    </script>
 </body>
 </html>
