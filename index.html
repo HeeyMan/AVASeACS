@@ -8,6 +8,7 @@
     <meta property="og:image" content="https://heeyman.github.io/AVASeACS/icon.png">
     <meta property="og:url" content="https://heeyman.github.io/AVASeACS/">
     <link rel="icon" href="icon.png" type="image/png">
+ <title>Cronômetro AVAS/ACS</title>
      <style>
         body {
             background-color: #1f1f1f;
@@ -106,6 +107,26 @@
             margin-top: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
+        .nota-corte {
+            background-color: #555555;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .nota-corte h3 {
+            color: #ff5722;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .nota-corte p {
+            color: #ffffff;
+            margin: 5px 0 0;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -132,6 +153,14 @@
     </div>
     <div id="tempoCopiado"></div>
     <div class="highlight-box">#SomosTodosDonoDaVerdade</div>
+
+    <!-- Caixa com as notas de corte -->
+    <div class="nota-corte">
+        <h3><span style="color: #0BFC00;">Possível nota de corte AVAS</span></h3>
+        <p><span style="color: #D3EC19;">86</span> - Vagas Imediatas</p>
+        <p><span style="color: #D3EC19;">76</span> - Cadastro de reserva</p>
+    </div>
+
     <div class="audio-controls">
         <button class="audio-button" onclick="changeVolume('down')">
             <span class="icon">&#128265;</span>
@@ -146,7 +175,7 @@
     <div class="footer">
         #EuQueroMatarMosquito - Ajuda gente FUNATEC! Libera logo o resultado.
     </div>
-    <p style="font-size: 20px; color: #ff5722; margin-top: 20px;">Aperte o botão laranja para Pausar ou Iniciar a Música</p>
+    <p style="font-size: 20px; color: #F9F9F9; margin-top: 20px;">Aperte o botão para Pausar ou Iniciar a Música</p>
     <script>
         let audio = document.getElementById('audio');
         audio.autoplay = true;
