@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Contagem regressiva pros resultados! 🥳🎉">
+    <title>Cronômetro Resultado AVAS/ACS</title>
+    <link rel="icon" href="icon.png" type="image/png">
+
+    <!-- Meta Tags Open Graph (og) -->
+    <meta property="og:title" content="Cronômetro AVAS/ACS">
+    <meta property="og:description" content="Contagem regressiva pros resultados! 🥳🎉">
+    <meta property="og:image" content="https://heeyman.github.io/AVASeACS/wpp.png">
+    <meta property="og:url" content="https://heeyman.github.io/AVASeACS/">
+
+    <!-- Outras Meta Tags (não-og) -->
+    <meta name="author" content="Seu Nome">
+    <style>
+        body {
+            background-color: #1f1f1f;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            margin-top: 10px; /* Ajuste para a margem superior */
+        }
+
+        .container {
+            background-color: #333333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .dialog-box {
+            background-color: #444444;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        #countdown {
+            color: #ff0000;
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .highlight-box {
+            background-color: #555555;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .nota-corte {
+            background-color: #555555;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .nota-corte h3 {
+            color: #ff5722;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .nota-corte p {
+            color: #ffffff;
+            margin: 5px 0 0;
+            font-size: 18px;
+        }
+
+        .share-copy-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .share-button, .copy-button {
+            background-color: #4285f4;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .share-button {
+            background-color: #25d366;
+        }
+
+        .copy-button {
+            background-color: #4285f4; /* Use a mesma cor de fundo do botão do WhatsApp */
+        }
+
+        .icon {
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        audio {
+            display: none;
+        }
+
+        .audio-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .audio-button {
+            background-color: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            margin: 0 10px;
+            color: #ff5722;
+        }
+
+        .start-button {
+            background-color: #ff5722;
+            border: none;
+            color: #ffffff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            font-size: 14px;
+            margin-top: 30px;
+        }
+      
+      /* Adicione ao seu estilo CSS */
+
+.audio-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.audio-controls button {
+    background-color: #fff;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0 5px; /* Espaçamento entre os botões */
+}
+
+.audio-controls button:hover {
+    background-color: #f0f0f0;
+}
+
+.start-button {
+    background-color: #000;
+    color: #fff;
+}
+
+.start-button:hover {
+    background-color: #333;
+}
+
+/* Adicione ao seu estilo CSS */
+
+.share-copy-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.share-button, .copy-button {
+    background-color: #4285f4;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 5px;
+}
+
+.share-button {
+    background-color: #1AC431;
+}
+
+.copy-button {
+    background-color: #4285f4; /* Use a mesma cor de fundo do botão do WhatsApp */
+    margin: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.copy-button .icon {
+    margin-bottom: 5px;
+}
+
+.icon {
+    font-size: 24px;
+}
+
+/* Adicione a classe "copy-button" no botão de cópia */
+      
+
+      
+    </style>
+</head>
+
+<body>
+    <audio id="audio" controls autoplay>
+        <source src="https://heeyman.github.io/AVASeACS/musiquinha.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="header">Cronômetro dos resultados das provas de ACS & AVAS</div>
+    <div class="container">
+        <div class="dialog-box">
+            <p>O tempo que falta para a FUNATEC soltar o resultado é de:</p>
+        </div>
+        <div id="countdown">Calculando...</div>
+    </div>
+    <div class="share-copy-buttons">
+        <button class="share-button" onclick="compartilhar()">
+          <center> <span class="icon">&#128222;</span>
+          Compartilhar no WhatsApp<br> quanto tempo falta.</center>
+        </button>
+        <button class="copy-button" onclick="copiarTempo()">
+            <span class="icon">&#128203;</span>
+            Copiar Tempo
+        </button>
+    </div>
+    <div id="tempoCopiado"></div>
+   
+
+    <!-- Caixa com as notas de corte -->
+<div class="nota-corte" style="background-color: #222; padding: 20px; border-radius: 10px; margin-top: 20px;">
+    <h3 style="color: #FFD700; font-size: 32px; font-weight: bold;">Possível nota de corte AVAS</h3>
+    <table style="margin: 0 auto; border-collapse: collapse; text-align: center;">
+        <tr>
+            <th style="padding: 8px; font-weight: bold; color: #ADFF2F;">Categoria</th>
+            <th style="padding: 8px; font-weight: bold; color: #ADFF2F;">Vagas Imediatas</th>
+            <th style="padding: 8px; font-weight: bold; color: #ADFF2F;">Cadastro Reserva</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold;">Ampla</td>
+            <td style="padding: 8px; font-weight: bold; color: #FF6F61;">85</td>
+            <td style="padding: 8px; font-weight: bold; color: #87CEFA;">75</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold;">Afro</td>
+            <td style="padding: 8px; font-weight: bold; color: #FF6F61;">80</td>
+            <td style="padding: 8px; font-weight: bold; color: #87CEFA;">70</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold;">Hipo</td>
+            <td style="padding: 8px; font-weight: bold; color: #FF6F61;">78</td>
+            <td style="padding: 8px; font-weight: bold; color: #87CEFA;">68</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold;">PcD</td>
+            <td style="padding: 8px; font-weight: bold; color: #FF6F61;">82</td>
+            <td style="padding: 8px; font-weight: bold; color: #87CEFA;">72</td>
+        </tr>
+    </table>
+</div>
+
+
+
+
+    </div>
+</div>
+
+    <div class="audio-controls">
+        <button class="audio-button" onclick="changeVolume('down')">
+            <span class="icon">&#128265;</span>
+        </button>
+        <button class="start-button" onclick="toggleAudio()">
+            &#9654;
+        </button>
+        <button class="audio-button" onclick="changeVolume('up')">
+            <span class="icon">&#128266;</span>
+        </button>
+    </div>
+    <div class="footer">
+        #EuQueroMatarMosquito - Ajuda gente FUNATEC! Libera logo o resultado.
+    </div>
+       <p style="font-size: 12px; color: #F9F9F9; margin-top: 20px;">Aperte o botão para Pausar ou Iniciar a Música</p>
+    <script>
+        let audio = document.getElementById('audio');
+        audio.autoplay = true;
+
+        function countdown(endDate) {
+            let now = new Date();
+            let end = new Date(endDate);
+            let timeDiff = end - now;
+            let seconds = Math.floor(timeDiff / 1000);
+            let minutes = Math.floor(seconds / 60);
+            let hours = Math.floor(minutes / 60);
+            let days = Math.floor(hours / 24);
+
+            hours %= 24;
+            minutes %= 60;
+            seconds %= 60;
+
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (timeDiff <= 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "Tempo esgotado!";
+            }
+        }
+
+        const endDate = new Date("2023-10-20T23:00:00-03:00");
+        const timer = setInterval(() => countdown(endDate), 1000);
+        countdown(endDate);
+
+        function compartilhar() {
+            const tempoFaltando = document.getElementById("countdown").innerText;
+            const mensagem = `Faltam apenas ${tempoFaltando} para sair o resultado! 📝✅
+            
+            https://heeyman.github.io/AVASeACS/`;
+
+            const link = document.createElement('a');
+            link.href = `whatsapp://send?text=${encodeURIComponent(mensagem)}`;
+            link.target = '_blank';
+            link.click();
+        }
+
+        function copiarTempo() {
+            const tempoFaltando = document.getElementById("countdown").innerText;
+            const tempoCopiadoElement = document.getElementById("tempoCopiado");
+            tempoCopiadoElement.innerHTML = `Tempo copiado: ${tempoFaltando}`;
+
+            const input = document.createElement('input');
+            input.style.opacity = '0';
+            input.value = `Faltam apenas ${tempoFaltando} para sair o resultado! 📝✅
+            
+            https://heeyman.github.io/AVASeACS/`;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+
+            const mensagemCopiado = document.createElement('div');
+            mensagemCopiado.textContent = 'Tempo copiado!';
+            mensagemCopiado.style.color = '#ffffff';
+            mensagemCopiado.style.fontSize = '16px';
+            mensagemCopiado.style.marginTop = '10px';
+            document.getElementById('tempoCopiado').appendChild(mensagemCopiado);
+
+            setTimeout(() => {
+                mensagemCopiado.remove();
+            }, 5000);
+        }
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+
+        function changeVolume(direction) {
+            if (direction === 'up' && audio.volume < 1) {
+                audio.volume += 0.1;
+            } else if (direction === 'down' && audio.volume > 0) {
+                audio.volume -= 0.1;
+            }
+        }
+    </script>
+</body>
+
+</html>
