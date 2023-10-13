@@ -449,7 +449,21 @@
                 audio.play();
             }
         }
+
+        // Função para gerar um número aleatório entre 0 e 3 (para escolher a música)
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Executar uma música aleatória ao carregar a página
+        window.onload = function () {
+            const randomIndex = getRandomInt(0, 3);
+            chooseMusic(randomIndex);
+        }
     </script>
+</head>
+       
+  
 </body>
 
 </html>
