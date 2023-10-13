@@ -441,16 +441,20 @@
         }
 
         function chooseMusic(index) {
-            const audio = document.getElementById('audio');
-            const sources = audio.getElementsByTagName('source');
+    const audio = document.getElementById('audio');
+    const sources = audio.getElementsByTagName('source');
 
-            if (index >= 0 && index < sources.length) {
-                audio.src = sources[index].src;
-                audio.play();
-            }
-        }
+    if (index >= 0 && index < sources.length) {
+        audio.src = sources[index].src;
+        audio.play();
+    }
 
-        // Função para gerar um número aleatório entre 0 e 3 (para escolher a música)
+    // Esconder o menu de música após a escolha
+    const musicList = document.getElementById('musicList');
+    musicList.style.display = 'none';
+}
+
+          // Função para gerar um número aleatório entre 0 e 3 (para escolher a música)
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
