@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Notas AVAS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        #resultado {
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+    <script>
+        function calcularNota() {
+            var questoesPortugues = parseInt(document.getElementById('questoesPortugues').value);
+            var questoesBasicas = parseInt(document.getElementById('questoesBasicas').value);
+            var questoesEspecificas = parseInt(document.getElementById('questoesEspecificas').value);
+
+            var notaPortugues = questoesPortugues * 1.0;
+            var notaBasicas = questoesBasicas * 1.071428571428571;
+            var notaEspecificas = questoesEspecificas * 2.142857142857143;
+
+            var totalNotas = notaPortugues + notaBasicas + notaEspecificas;
+
+            document.getElementById('resultado').innerHTML = "Soma das Notas: " + totalNotas.toFixed(6);
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculadora de Notas AVAS</h1>
+
+    <table>
+        <tr>
+            <th>Tipo de Questões</th>
+            <th>Quantidade</th>
+        </tr>
+        <tr>
+            <td>Questões de Português</td>
+            <td><input type="number" id="questoesPortugues" value="0"></td>
+        </tr>
+        <tr>
+            <td>Questões Básicas</td>
+            <td><input type="number" id="questoesBasicas" value="0"></td>
+        </tr>
+        <tr>
+            <td>Questões Específicas</td>
+            <td><input type="number" id="questoesEspecificas" value="0"></td>
+        </tr>
+    </table>
+
+    <button onclick="calcularNota()">Calcular Nota</button>
+
+    <div id="resultado"></div>
+
+    <p>Explicações:</p>
+    <ul>
+        <li>Questões Específicas: Havia 30 questões valendo 60, duas foram anuladas, agora 28 valem 60.</li>
+        <li>Questões Básicas: Havia 30 questões e 2 foram anuladas, agora 28 valem 30.</li>
+        <li>Questões de Português se mantêm intactas.</li>
+    </ul>
+
+    <p>Nota: Os valores de cada tipo de questão foram fornecidos pelo usuário.</p>
+</body>
+</html>
